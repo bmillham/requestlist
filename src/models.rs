@@ -1,8 +1,9 @@
+use crate::schema::requestlist;
 use chrono;
 use diesel::prelude::*;
 
 #[derive(Queryable, Selectable)]
-#[diesel(table_name = crate::schema::requestlist)]
+#[diesel(table_name = requestlist)]
 #[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct RequestList {
     pub ID: i32,
@@ -12,6 +13,6 @@ pub struct RequestList {
     pub msg: Option<String>,
     pub name: Option<String>,
     pub code: i32,
-    pub ETA: diesel::mysql::MysqlType::DateTime,
-    pub status: diesel::mysql::MysqlType::Enum,
+    pub ETA: chrono::NaiveDateTime,
+    pub status: String,
 }

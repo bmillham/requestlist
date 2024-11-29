@@ -8,7 +8,6 @@ pub mod sql_types {
 
 diesel::table! {
     use diesel::sql_types::*;
-    use super::sql_types::RequestlistStatusEnum;
 
     requestlist (ID) {
         ID -> Integer,
@@ -22,6 +21,6 @@ diesel::table! {
         code -> Integer,
         ETA -> Datetime,
         #[max_length = 7]
-        status -> RequestlistStatusEnum,
+        status -> Varchar,
     }
 }
