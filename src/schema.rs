@@ -24,3 +24,31 @@ diesel::table! {
         status -> Varchar,
     }
 }
+
+diesel::table! {
+    use diesel::sql_types::*;
+
+    song (id) {
+        id -> Unsigned<Integer>,
+        file -> Nullable<Text>,
+        catalog -> Unsigned<Integer>,
+        album -> Unsigned<Integer>,
+        year -> Integer,
+        artist -> Unsigned<Integer>,
+        title -> Nullable<Text>,
+        bitrate -> Integer,
+        rate -> Integer,
+        #[max_length = 3]
+        mode -> Nullable<Varchar>,
+        size -> Unsigned<Integer>,
+        time -> Unsigned<Smallint>,
+        track -> Nullable<Unsigned<Smallint>>,
+        #[max_length = 36]
+        mbid -> Nullable<Varchar>,
+        played -> Unsigned<Tinyint>,
+        enabled -> Unsigned<Tinyint>,
+        update_time -> Nullable<Unsigned<Integer>>,
+        addition_time -> Nullable<Unsigned<Integer>>,
+        modification_time -> Nullable<Unsigned<Integer>>,
+    }
+}

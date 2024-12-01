@@ -13,3 +13,35 @@ CREATE TABLE IF NOT EXISTS `requestlist` (
   KEY `songID` (`songID`),
   KEY `status` (`status`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5636 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `song` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `file` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `catalog` int(11) unsigned NOT NULL DEFAULT 0,
+  `album` int(11) unsigned NOT NULL DEFAULT 0,
+  `year` int(11) unsigned NOT NULL DEFAULT 0,
+  `artist` int(11) unsigned NOT NULL DEFAULT 0,
+  `title` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `bitrate` int(11) unsigned NOT NULL DEFAULT 0,
+  `rate` int(11) unsigned NOT NULL DEFAULT 0,
+  `mode` enum('abr','vbr','cbr') DEFAULT NULL,
+  `size` int(11) unsigned NOT NULL DEFAULT 0,
+  `time` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `track` smallint(5) unsigned DEFAULT NULL,
+  `mbid` varchar(36) DEFAULT NULL,
+  `played` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `enabled` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  `update_time` int(11) unsigned DEFAULT 0,
+  `addition_time` int(11) unsigned DEFAULT 0,
+  `modification_time` int(11) unsigned DEFAULT 0,
+  PRIMARY KEY (`id`),
+  KEY `album` (`album`),
+  KEY `artist` (`artist`),
+  KEY `update_time` (`update_time`),
+  KEY `addition_time` (`addition_time`),
+  KEY `catalog` (`catalog`),
+  KEY `played` (`played`),
+  KEY `enabled` (`enabled`),
+  KEY `file` (`file`(250)),
+  FULLTEXT KEY `idjc` (`title`)
+) ENGINE=MyISAM AUTO_INCREMENT=114752 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
