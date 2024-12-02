@@ -11,7 +11,7 @@ diesel::table! {
 
     requestlist (ID) {
         ID -> Integer,
-        songID -> Integer,
+        songID -> Unsigned<Integer>,
         t_stamp -> Datetime,
         #[max_length = 255]
         host -> Nullable<Varchar>,
@@ -52,3 +52,7 @@ diesel::table! {
         modification_time -> Nullable<Unsigned<Integer>>,
     }
 }
+
+diesel::joinable!(requestlist -> song(songID));
+
+diesel::allow_tables_to_appear_in_same_query!(requestlist, song);

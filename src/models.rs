@@ -3,12 +3,13 @@ use crate::schema::song;
 use chrono;
 use diesel::prelude::*;
 
-#[derive(Queryable, Selectable)]
+#[derive(Queryable, Selectable, Associations, PartialEq)]
+#[diesel(belongs_to(Song, foreign_key=songID))]
 #[diesel(table_name = requestlist)]
 #[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct RequestList {
     pub ID: i32,
-    pub songID: i32,
+    pub songID: u32,
     pub t_stamp: chrono::NaiveDateTime,
     pub host: Option<String>,
     pub msg: Option<String>,
