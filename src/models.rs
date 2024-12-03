@@ -1,5 +1,4 @@
-use crate::schema::requestlist;
-use crate::schema::song;
+use crate::schema::{requestlist, song};
 use chrono;
 use diesel::prelude::*;
 
@@ -19,7 +18,7 @@ pub struct RequestList {
     pub status: String,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Debug, Identifiable, Selectable, PartialEq)]
 #[diesel(table_name = song)]
 #[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Song {

@@ -55,4 +55,4 @@ diesel::table! {
 
 diesel::joinable!(requestlist -> song(songID));
 
-diesel::allow_tables_to_appear_in_same_query!(requestlist, song);
+diesel::allow_tables_to_appear_in_same_query!(song, requestlist);
