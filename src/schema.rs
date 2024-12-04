@@ -10,7 +10,7 @@ diesel::table! {
     use diesel::sql_types::*;
 
     requestlist (ID) {
-        ID -> Integer,
+        ID -> Unsigned<Integer>,
         songID -> Unsigned<Integer>,
         t_stamp -> Datetime,
         #[max_length = 255]

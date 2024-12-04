@@ -9,8 +9,9 @@ fn main() {
 
     let results = requestlist
         //.limit(10)
-        .find(5622)
+        //.find(5622)
         //.filter(status.eq("ignored"))
+        .filter(songID.eq(23549))
         .load::<RequestList>(connection)
         .expect("Unable to read requests");
 

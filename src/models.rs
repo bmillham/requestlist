@@ -9,7 +9,7 @@ use diesel::prelude::*;
 #[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct RequestList {
     #[diesel(column_name = ID)]
-    pub id: i32,
+    pub id: u32,
     #[diesel(column_name = songID)]
     pub song_id: u32,
     pub t_stamp: chrono::NaiveDateTime,
