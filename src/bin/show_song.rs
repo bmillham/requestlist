@@ -38,9 +38,9 @@ fn main() {
 
     if song_id > 0 {
         use self::schema::requestlist::dsl::*;
-        /* let result = RequstList::belonging_to(&results)
+        /*let result = RequestList::belonging_to(&results)
         .select(RequestList::as_select())
-        .load(connection); */
+        .load(connection);*/
         // This fails with: error[E0599]: no function or associated item named `belonging_to` found for struct `requestlist::models::RequestList` in the current scope
 
         let result = requestlist
