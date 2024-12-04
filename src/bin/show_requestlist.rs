@@ -9,7 +9,7 @@ fn main() {
 
     let results = requestlist
         //.limit(10)
-        //.find(5622)
+        .find(5622)
         //.filter(status.eq("ignored"))
         .load::<RequestList>(connection)
         .expect("Unable to read requests");
@@ -19,11 +19,11 @@ fn main() {
     for request in results {
         println!(
             "{} {} {} {} {} {} {} {}",
-            request.ID,
-            request.songID,
+            request.id,
+            request.song_id,
             request.status,
             request.t_stamp,
-            request.ETA,
+            request.eta,
             request.host.unwrap(),
             request.name.unwrap(),
             request.msg.unwrap_or_else(|| String::from("None")),

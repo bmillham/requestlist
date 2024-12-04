@@ -1,4 +1,5 @@
-use crate::schema::{requestlist, song};
+use crate::schema::requestlist;
+use crate::schema::song;
 use chrono;
 use diesel::prelude::*;
 
@@ -7,18 +8,21 @@ use diesel::prelude::*;
 #[diesel(table_name = requestlist)]
 #[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct RequestList {
-    pub ID: i32,
-    pub songID: u32,
+    #[diesel(column_name = ID)]
+    pub id: i32,
+    #[diesel(column_name = songID)]
+    pub song_id: u32,
     pub t_stamp: chrono::NaiveDateTime,
     pub host: Option<String>,
     pub msg: Option<String>,
     pub name: Option<String>,
     pub code: i32,
-    pub ETA: chrono::NaiveDateTime,
+    #[diesel(column_name = ETA)]
+    pub eta: chrono::NaiveDateTime,
     pub status: String,
 }
 
-#[derive(Queryable, Debug, Identifiable, Selectable, PartialEq)]
+#[derive(Queryable, Debug, Identifiable)]
 #[diesel(table_name = song)]
 #[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Song {
