@@ -24,12 +24,12 @@ fn main() {
 
     println!("Found {} songs", results.len());
 
-    for s in results {
+    for s in &results {
         println!(
             "{} {} {} {} {} {}",
             s.id,
-            s.title.unwrap(),
-            s.file.unwrap(),
+            s.title.as_ref().unwrap(),
+            s.file.as_ref().unwrap(),
             s.track.unwrap(),
             s.artist,
             s.album,
@@ -37,16 +37,11 @@ fn main() {
     }
 
     if song_id > 0 {
-        use self::schema::requestlist::dsl::*;
-        /*let result = RequestList::belonging_to(&results)
-        .select(RequestList::as_select())
-        .load(connection);*/
-        // This fails with: error[E0599]: no function or associated item named `belonging_to` found for struct `requestlist::models::RequestList` in the current scope
+        let result = RequestList::belonging_to(&results)
+            .select(RequestList::as_select())
+            .load(connection)
+            .expect("error");
 
-        let result = requestlist
-            .filter(songID.eq(song_id))
-            .load::<RequestList>(connection)
-            .expect("No requests");
         println!("Requests {}", result.len());
         for req in result {
             println!("{} {}", req.name.unwrap(), req.msg.unwrap());

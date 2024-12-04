@@ -3,7 +3,8 @@ use crate::schema::song;
 use chrono;
 use diesel::prelude::*;
 
-#[derive(Queryable, Selectable, Associations, PartialEq)]
+#[derive(Queryable, Selectable, Identifiable, Associations, PartialEq)]
+#[diesel(primary_key(ID))]
 #[diesel(belongs_to(Song, foreign_key=songID))]
 #[diesel(table_name = requestlist)]
 #[diesel(check_for_backend(diesel::mysql::Mysql))]
@@ -22,7 +23,7 @@ pub struct RequestList {
     pub status: String,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Debug, Identifiable, PartialEq)]
 #[diesel(table_name = song)]
 #[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Song {
